@@ -6,6 +6,7 @@ export default app;
 
 app.get("/", helloEmployees);
 app.get("/employees", getEmployees);
+app.get("/employees/random", getRandomEmployee);
 app.get("/employees/:id", getEmployeeById);
 
 function helloEmployees(req, res) {
@@ -14,6 +15,12 @@ function helloEmployees(req, res) {
 
 function getEmployees(req, res) {
   res.send(employees);
+}
+
+function getRandomEmployee(req, res) {
+  const randomIndex = Math.floor(Math.random() * employees.length);
+  const employee = employees[randomIndex];
+  res.send(employee);
 }
 
 function getEmployeeById(req, res) {
